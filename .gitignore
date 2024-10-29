@@ -1,0 +1,106 @@
+# Virtual environment
+venv/
+
+# Byte-compiled / optimized / cached Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Log files and databases
+*.log
+*.sqlite3
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# MyPy type checker cache
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# PyInstaller files
+*.spec
+build/
+dist/
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Django stuff
+*.pot
+*.pyc
+__pycache__/
+*.pyo
+db.sqlite3
+.env
+local_settings.py
+
+# Flask stuff
+instance/
+.webassets-cache
+
+# Scrapy stuff
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# IDE and editor settings
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Jupyter Notebook configuration
+.jupyter/
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows specific files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Python egg files
+*.egg
+*.egg-info/
+.eggs/
+
+# Environment variables and secrets
+.env
+.env.*
+.secret
+
+# Docker files
+*.pid
+.dockerignore
+
+# Generated metadata files (like Poetry or Pipenv)
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# Temporary files and backups
+*.bak
+*.swp
+*.temp
+*.tmp
+~$*
+

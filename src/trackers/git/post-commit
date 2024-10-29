@@ -1,0 +1,28 @@
+#!/bin/python
+
+import os
+import time
+import subprocess
+
+repo_name = subprocess.getoutput("basename `git rev-parse --show-toplevel`")
+changes = subprocess.getoutput("git log --format="" -1 --numstat").split('\n')
+
+timestamp = str(time.time())
+filetype = ""
+# app time plus minus  
+final_string = "git,"
+
+for change in changes:
+    change = change.split('\t')
+    p_diff = str(change[0])
+    n_diff = str(change[1])
+    filetype = os.path.splitext(change[2])[1]
+    if filetype == "":
+        filetype = "other"
+    final_string += timestamp + ',' + p_diff + ',' + n_diff + ',' + filetype
+    print(final_string)
+    final_string = "git,"
+
+
+
+
