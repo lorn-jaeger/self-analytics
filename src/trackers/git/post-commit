@@ -1,28 +1,41 @@
-#!/bin/python
+#!/usr/bin/env python3
 
 import os
 import time
 import subprocess
+import requests
 
 repo_name = subprocess.getoutput("basename `git rev-parse --show-toplevel`")
-changes = subprocess.getoutput("git log --format="" -1 --numstat").split('\n')
+changes = subprocess.getoutput('git log --format="" -1 --numstat').strip().split('\n')
 
-timestamp = str(time.time())
-filetype = ""
-# app time plus minus  
-final_string = "git,"
+timestamp = int(time.time() * 1000)
+
+data_to_send = {
+    'repo': repo_name,
+    'timestamp': timestamp,
+    'changes': []
+}
 
 for change in changes:
-    change = change.split('\t')
-    p_diff = str(change[0])
-    n_diff = str(change[1])
-    filetype = os.path.splitext(change[2])[1]
-    if filetype == "":
-        filetype = "other"
-    final_string += timestamp + ',' + p_diff + ',' + n_diff + ',' + filetype
-    print(final_string)
-    final_string = "git,"
+    if not change.strip():
+        continue
+    change_parts = change.split('\t')
+    if len(change_parts) < 3:
+        continue
+    added_lines = change_parts[0]
+    deleted_lines = change_parts[1]
+    filepath = change_parts[2]
+    filetype = os.path.splitext(filepath)[1] or 'other'
 
+    data_to_send['changes'].append({
+        'added': added_lines,
+        'deleted': deleted_lines,
+        'filetype': filetype
+    })
 
-
+try:
+    response = requests.post('http://localhost:8080/', json=data_to_send)
+    response.raise_for_status()
+except requests.exceptions.RequestException as e:
+    print('Error sending data:', e)
 
