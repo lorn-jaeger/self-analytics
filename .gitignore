@@ -1,6 +1,8 @@
 # Virtual environment
 venv/
 
+instance/
+
 # Byte-compiled / optimized / cached Python files
 __pycache__/
 *.py[cod]
