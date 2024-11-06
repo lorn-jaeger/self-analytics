@@ -1,1 +1,1 @@
-![screenshot][img/browser-display.png]
+![screenshot](img/browser-display.png)
